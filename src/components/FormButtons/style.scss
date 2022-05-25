@@ -1,0 +1,14 @@
+.form-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+
+  &_justify_start {
+    justify-content: flex-start;
+  }
+
+  &_justify_between {
+    justify-content: space-between;
+  }
+}

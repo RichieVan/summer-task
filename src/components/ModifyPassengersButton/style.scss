@@ -1,0 +1,59 @@
+.edit-passengers {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: .6;
+    cursor: initial;
+  }
+
+  &__icon {
+    position: relative;
+    width: 25px;
+    height: 25px;
+    margin-right: 20px;
+    background: $color-main;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 25px;
+
+    &:after {
+      position: relative;
+      left: -1px;
+      top: -1px;
+    }
+  }
+
+  &_add &__icon:after {
+    content: '\2b';
+  }
+
+  &_remove &__icon:after {
+    content: '\2212';
+  }
+
+  &:disabled &__icon {
+    background-color: #ccc;
+  }
+
+  &__label {
+    color: $color-main;
+    font-size: 14px;
+    border-bottom: 1px dotted $color-main;
+  }
+
+  &:hover:not([disabled]) &__label {
+    border-bottom-color: transparent;
+  }
+
+  &:disabled &__label {
+    color: #ccc;
+    border-bottom-color: #ccc;
+  }
+}

@@ -1,0 +1,65 @@
+.form-label {
+  display: flex;
+  position: relative;
+
+  &_for_field {
+    flex-direction: column;
+  }
+
+  &__wrapper {
+    position: relative;
+  }
+
+  &_for_field &__wrapper {
+    margin-bottom: 5px;
+  }
+
+  &_with_hint &__wrapper {
+    cursor: pointer;
+  }
+
+  &__hint {
+    display: none;
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    width: 100%;
+
+    &_active {
+      display: block;
+    }
+
+    &-inner {
+      padding: 8px 5px 5px;
+      margin-bottom: 6px;
+      border: 1px solid #000;
+      background: #fff;
+      box-shadow: 0 2px 7px 1px #555;
+    }
+  }
+
+  &__text {
+    align-self: flex-start;
+    position: relative;
+    font-weight: bold;
+  }
+
+  &_for_checkbox &__text {
+    padding: 2px 0 0 5px;
+  }
+
+  &_with_hint &__text {
+    border-bottom: 1px dotted #000;
+  }
+
+  &_required &__text:after {
+    content: '*';
+    display: block;
+    position: absolute;
+    right: -16px;
+    top: 0;
+    font-size: 28px;
+    color: $color-main;
+    line-height: 26px;
+  }
+}

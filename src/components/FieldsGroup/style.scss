@@ -1,0 +1,17 @@
+.fields-group {
+  hr {
+    margin-bottom: 20px;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  &__heading {
+    color: $color-main;
+    font-size: 2em;
+    font-weight: normal;
+  }
+}

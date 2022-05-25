@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 1.4em;
+}
+
+input,
+select {
+  outline: none;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.col-3 {
+  width: 25%;
+  padding: 0 10px;
+}
+
+.col-4 {
+  width: 33.33333333333%;
+  padding: 0 10px;
+}
+
+.col-9 {
+  width: 75%;
+  padding: 0 10px;
+}
+
+.container {
+  max-width: 1220px;
+  margin: 0 auto;
+}

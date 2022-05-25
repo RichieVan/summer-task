@@ -1,0 +1,35 @@
+.form-field {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &__input {
+    width: 100%;
+    height: 34px;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08) inset;
+
+    &_with_error {
+      background: #fdf4f4;
+      border-color: $color-main;
+    }
+
+    &:disabled {
+      background: #eee;
+      border-color: #ccc;
+    }
+  }
+
+  &__checkbox {
+    margin: 0;
+  }
+
+  &__error {
+    height: 14px;
+    padding: 2px 0 0 1px;
+    line-height: 14px;
+    color: $color-main;
+  }
+}
