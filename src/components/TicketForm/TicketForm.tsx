@@ -2,16 +2,13 @@ import React, { ReactNode } from 'react';
 import {
   Form,
   Formik,
-  Field,
   FieldArray,
-  FormikErrors,
   FormikHelpers,
 } from 'formik';
-import ReactDatePicker, { registerLocale } from 'react-datepicker';
+import { registerLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru';
 import ReactInputMask from 'react-input-mask';
 import FormField from '../FormField/FormField';
-import FormLabel from '../FormLabel/FormLabel';
 import convertDate from '../../utils/convertDate';
 import {
   Passenger,
@@ -23,8 +20,6 @@ import {
 } from '../../types/TicketForm';
 import FormFieldWrapper from '../FormFieldWrapper/FormFieldWrapper';
 import FormCheckbox from '../FormField/FormCheckbox';
-import FormFieldError from '../FormField/FormFieldError';
-import getClassList from '../../utils/getClassList';
 import ModifyPassengersButton from '../ModifyPassengersButton/ModifyPassengersButton';
 import FormButton from '../FormButton/FormButton';
 import FormButtons from '../FormButtons/FormButtons';
@@ -48,6 +43,7 @@ import {
 import { documentNumberHint, phoneNumberHint, SNILSNumberHint } from './hints';
 import FieldsGroup from '../FieldsGroup/FieldsGroup';
 import FormHint from '../FormHint/FormHint';
+import FormDatetimeField from '../FormField/FormDatetimeField';
 
 registerLocale('ru', ru);
 
@@ -164,7 +160,6 @@ const TicketForm = () => {
         isSubmitting,
         setFieldValue,
         isValid,
-        errors,
       }) => (
         <Form className="form">
           <FieldArray name="passengers">
@@ -183,11 +178,6 @@ const TicketForm = () => {
                     },
                     index,
                   ) => {
-                    const birthDateError = errors.passengers ? (errors.passengers as FormikErrors<Passenger>[])[index]?.birthDate : '';
-                    const birthDateMods: string[] = [];
-                    if (birthDateError) birthDateMods.push('with_error');
-                    const birthDateClassList = getClassList('form-field__input', birthDateMods);
-
                     const disableChildOption = !verifyAge(birthDate, 10);
 
                     return (
@@ -282,36 +272,29 @@ const TicketForm = () => {
                           </div>
                           <div className="col-4">
                             <FormFieldWrapper>
-                              <FormLabel text="Дата рождения">
-                                <Field
-                                  as={ReactDatePicker}
-                                  className={birthDateClassList}
-                                  name={`passengers.${index}.birthDate`}
-                                  value={birthDate ? convertDate(birthDate) : ''}
-                                  selected={birthDate}
-                                  disabled={isFSS}
-                                  required={!isFSS}
-                                  onChange={(date: Date) => {
-                                    setFieldValue(`passengers.${index}.birthDate`, date);
-                                    if (verifyAge(birthDate, 10)) {
-                                      setFieldValue(`passengers.${index}.tariff`, 'full');
-                                    }
-                                  }}
-                                  minDate={new Date('1900-01-01')}
-                                  maxDate={new Date()}
-                                  locale="ru"
-                                  dateFormat="dd.MM.yyyy"
-                                  customInput={(
-                                    <ReactInputMask
-                                      mask="99.99.9999"
-                                      placeholder="__.__.____"
-                                    />
-                                  )}
-                                />
-                              </FormLabel>
-                              <FormFieldError
-                                value={birthDateError}
-                                show={!isFSS}
+                              <FormDatetimeField
+                                label="Дата рождения"
+                                name={`passengers.${index}.birthDate`}
+                                value={birthDate ? convertDate(birthDate) : ''}
+                                selected={birthDate}
+                                disabled={isFSS}
+                                required={!isFSS}
+                                onChange={(date: Date) => {
+                                  setFieldValue(`passengers.${index}.birthDate`, date);
+                                  if (verifyAge(birthDate, 10)) {
+                                    setFieldValue(`passengers.${index}.tariff`, 'full');
+                                  }
+                                }}
+                                minDate={new Date('1900-01-01')}
+                                maxDate={new Date()}
+                                locale="ru"
+                                dateFormat="dd.MM.yyyy"
+                                customInput={(
+                                  <ReactInputMask
+                                    mask="99.99.9999"
+                                    placeholder="__.__.____"
+                                  />
+                                )}
                               />
                             </FormFieldWrapper>
                           </div>
